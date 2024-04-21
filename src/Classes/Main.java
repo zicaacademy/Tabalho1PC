@@ -3,7 +3,8 @@ package Classes;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Cliente cliente1 = new Cliente();
+		
 
 	}
 
