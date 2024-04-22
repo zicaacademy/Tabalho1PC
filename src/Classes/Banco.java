@@ -5,7 +5,6 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Banco {
-	//ArrayList<String> historicoTransacoes = new ArrayList<>();
 	private static Lock lock = new ReentrantLock();
 	
 	Cliente[] clientes = new Cliente[4];
@@ -17,15 +16,19 @@ public class Banco {
 		this.lojas = lojas;
 	}
 	
-	public void comecar(){
-		System.out.print("iniciando");
+	public void transferir(Conta origem, Conta destino, double valor){
 		lock.lock();
-		for (int i=0; i <= clientes.length;i++) {
-			try {
-				clientes[i].start();
-			}finally {
-				lock.unlock();
+		try {
+			if (origem.getSaldo() >= valor) {
+				destino.deposito(valor);
+				origem.debitar(valor);
+				System.out.print("Transferencia no valor de "+valor+"$ de "+origem.nome+" para "+destino.nome+"\n");
+			}else {
+				System.out.print("Não foi possivel tranferir o valor de "+valor+"$ pois o saldo é insuficinte\n");
+
 			}
+		}finally {
+			lock.unlock();
 		}
 	}
 }
