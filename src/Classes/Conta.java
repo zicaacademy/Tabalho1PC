@@ -2,7 +2,7 @@ package Classes;
 
 public class Conta {
 	private double saldo;
-	String nome;
+	private String nome;
 
 	public Conta(double saldo, String nome) {
 		this.nome = nome;
@@ -21,4 +21,7 @@ public class Conta {
 		return saldo;
 	}
 
+	public String getNome() {
+		return nome;
+	}
 }
