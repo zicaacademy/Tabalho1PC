@@ -4,16 +4,18 @@ import java.util.Random;
 public class Cliente extends Thread{
 	String nome;
 	Conta conta = new Conta(1000, this.nome);
+	Loja loja1 = new Loja("Aplle", "Maria", "Jonas");
+	Loja loja2 = new Loja("Microsoft", "Jose", "Luciana");
 	
 	public Cliente(String nome) {
 		this.nome = nome;
 	}
 	
-	public void run(Loja loja1, Loja loja2) {
-		comprar(loja2, loja2);
+	public void run() {
+		comprar();
 	}
 	
-	public void comprar(Loja loja1, Loja loja2) {
+	public synchronized void comprar() {
 		boolean alternar = true;
 
 		while(conta.saldo != 0) {

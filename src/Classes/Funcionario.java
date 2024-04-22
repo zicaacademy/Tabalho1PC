@@ -13,11 +13,14 @@ public class Funcionario extends Thread{
 		investir();
 	}
 	
-	public void investir(){
-		if (this.contaSalario.saldo >= 1400) {
-			double valorAInvestir = (this.contaSalario.saldo*20)/100;
-			this.contaInvestimento.saldo += valorAInvestir;
-			this.contaSalario.saldo -= valorAInvestir;
+	public synchronized void investir(){
+		while(true) {
+			if (this.contaSalario.saldo >= 1400) {
+				double valorAInvestir = (this.contaSalario.saldo*20)/100;
+				this.contaInvestimento.saldo += valorAInvestir;
+				this.contaSalario.saldo -= valorAInvestir;
+				break;
+			}
 		}
 	}
 }

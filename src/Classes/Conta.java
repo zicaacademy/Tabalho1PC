@@ -1,7 +1,24 @@
 package Classes;
 
 public class Conta {
-	double saldo;
+	private double saldo;
 	String nome;
+
+	public Conta(double saldo, String nome) {
+		this.nome = nome;
+		this.saldo = saldo;
+	}
+	
+	public void deposito(double valor) {
+		saldo += valor;
+	}
+	
+	public void transferencia(double valor) {
+		saldo -= valor;
+	}
+	
+	public double getSaldo() {
+		return saldo;
+	}
 
 }

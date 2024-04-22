@@ -17,14 +17,18 @@ public class Loja {
 	}
 	
 	public void pagamentoDosFuncionarios(){
-		if (this.conta.saldo >= 1400){
-			if (funcionario1Pago) {
-				this.funcionario1.contaSalario.saldo += 1400;
-				this.conta.saldo -= 1400;
-			}else {
-				this.funcionario1.contaSalario.saldo += 1400;
-				this.conta.saldo -= 1400;
-				funcionario1Pago = true;
+		while (true) {
+			if (this.conta.saldo >= 1400){
+				if (funcionario1Pago) {
+					this.funcionario1.contaSalario.saldo += 1400;
+					this.conta.saldo -= 1400;
+					break;
+				}else {
+					this.funcionario1.contaSalario.saldo += 1400;
+					this.conta.saldo -= 1400;
+					funcionario1Pago = true;
+					break;
+				}
 			}
 		}
 	}
