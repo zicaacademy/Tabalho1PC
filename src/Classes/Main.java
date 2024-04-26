@@ -3,19 +3,20 @@ package Classes;
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.print("foi");
+		
+        Object lock = new Object();
 
 		Banco banco = new Banco();
 
 		Funcionario[] funcionarios = new Funcionario[4];
-		funcionarios[0] = new Funcionario("Ricardo", banco);
-		funcionarios[1] = new Funcionario("Fernanda", banco);
-		funcionarios[2] = new Funcionario("Julio", banco);
-		funcionarios[3] = new Funcionario("Aline", banco);
+		funcionarios[0] = new Funcionario("Ricardo", banco, lock);
+		funcionarios[1] = new Funcionario("Fernanda", banco, lock);
+		funcionarios[2] = new Funcionario("Julio", banco, lock);
+		funcionarios[3] = new Funcionario("Aline", banco, lock);
 
 		Loja[] lojas = new Loja[2];
-		lojas[0] = new Loja(funcionarios[0], funcionarios[1], "Casas Bahia", banco);
-		lojas[1] = new Loja(funcionarios[2], funcionarios[3], "Amazon", banco);
+		lojas[0] = new Loja(funcionarios[0], funcionarios[1], "Casas Bahia", banco, lock);
+		lojas[1] = new Loja(funcionarios[2], funcionarios[3], "Amazon", banco, lock);
 
 		Cliente[] clientes = new Cliente[5];
 		clientes[0] = new Cliente("Felipe", lojas, banco);
@@ -23,8 +24,6 @@ public class Main {
 		clientes[2] = new Cliente("Alana", lojas, banco);
 		clientes[3] = new Cliente("Jonas", lojas, banco);
 		clientes[4] = new Cliente("Pedro", lojas, banco);
-
-		System.out.print("saldo na conta de " + clientes[0].conta.getNome() + ": " + clientes[0].conta.getSaldo());
 
 		for (int i = 0; i < 4; i++) {
 			funcionarios[i].start();

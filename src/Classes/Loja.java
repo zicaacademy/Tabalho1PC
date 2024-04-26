@@ -7,13 +7,15 @@ public class Loja {
 	Conta conta;
 	Funcionario funcionario1;
 	Funcionario funcionario2;
+	Object lock;
 
-	public Loja(Funcionario funcionario1, Funcionario funcionario2, String nome, Banco banco) {
+	public Loja(Funcionario funcionario1, Funcionario funcionario2, String nome, Banco banco, Object lock) {
 		this.banco = banco;
 		this.nome = nome;
 		this.funcionario1 = funcionario1;
 		this.funcionario2 = funcionario2;
 		this.conta = new Conta(nome);
+		this.lock = lock;
 	}
 
 	public void pagamentoDosFuncionarios() {
@@ -29,6 +31,10 @@ public class Loja {
 
 			}
 			System.out.print("\t saldo da loja " + this.nome + ": " + this.conta.getSaldo() + "\n\n");
+			
+			synchronized (lock) {
+	            lock.notifyAll();
+	        }
 		}
 	}
 
