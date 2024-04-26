@@ -7,9 +7,7 @@ public class Loja {
 	Funcionario funcionario1;
 	Funcionario funcionario2;
 	
-	public Loja(Banco banco,Funcionario funcionario1,Funcionario funcionario2,Conta conta ) {
-		this.banco = banco;
-		this.conta = conta;
+	public Loja(Funcionario funcionario1,Funcionario funcionario2) {
 		this.funcionario1 = funcionario1;
 		this.funcionario2 = funcionario2;
 	}
