@@ -4,22 +4,29 @@ public class Main {
 
 	public static void main(String[] args) {
 		System.out.print("foi");
+		Banco banco = new Banco();
 		
-		Cliente[] clientes = new Cliente[4];
-		clientes[0] = new Cliente("Felipe");
-		clientes[1] = new Cliente("Ana");
-		clientes[2] = new Cliente("Alana");
-		clientes[3] = new Cliente("Jonas");
-		clientes[4] = new Cliente("Pedro");
+		Funcionario[] funcionarios = new Funcionario[3];
+		funcionarios[0] = new Funcionario("Ricardo", banco);
+		funcionarios[1] = new Funcionario("Fernanda", banco);
+		funcionarios[0] = new Funcionario("Julio", banco);
+		funcionarios[1] = new Funcionario("Aline", banco);
 		
 		Loja[] lojas = new Loja[1];
-		lojas[0] = new Loja("Apple", "Silvana", "Anderson");
-		lojas[1] = new Loja("Microsoft", "Julio", "Erick");
+		lojas[0] = new Loja(funcionarios[0], funcionarios[1], "Casas Bahia", banco);
+		lojas[1] = new Loja(funcionarios[2], funcionarios[3], "Amazon", banco);
+		
+		Cliente[] clientes = new Cliente[4];
+		clientes[0] = new Cliente("Felipe", lojas, banco);
+		clientes[1] = new Cliente("Ana", lojas, banco);
+		clientes[2] = new Cliente("Alana", lojas, banco);
+		clientes[3] = new Cliente("Jonas", lojas, banco);
+		clientes[4] = new Cliente("Pedro", lojas, banco);
 
 		
-		Banco banco = new Banco(clientes, lojas);
 		
-		banco.comecar();
+		
+		
 	}
 
 }

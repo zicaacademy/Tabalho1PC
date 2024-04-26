@@ -1,9 +1,16 @@
 package Classes;
 
 public class Funcionario extends Thread{
-	Conta contaSalario;
-	Conta contaInvestimento;
-
+	private final Banco banco;
+	private String nome;
+	Conta contaSalario = new Conta(0, nome);
+	Conta contaInvestimento = new Conta(0, nome);
+	
+	public Funcionario (String nome, Banco banco) {
+		this.banco = banco;
+		this.nome = nome;
+	}
+	
 	public void run() {
 		investir();
 	}
@@ -12,10 +19,13 @@ public class Funcionario extends Thread{
 		while(true) {
 			if (this.contaSalario.getSaldo()>= 1400) {
 				double valorAInvestir = this.contaSalario.getSaldo() * 0.20;
-				contaSalario.debitar(valorAInvestir);
-				contaInvestimento.deposito(valorAInvestir);
+				banco.transferir(contaSalario, contaInvestimento, valorAInvestir);
 				break;
 			}
 		}
+	}
+	
+	public String getNome() {
+		return nome;
 	}
 }
